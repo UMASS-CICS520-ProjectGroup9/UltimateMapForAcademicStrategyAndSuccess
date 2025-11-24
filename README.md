@@ -23,16 +23,66 @@ This project is composed of multiple microservices:
 *   `userauthen-service`: Handles user authentication.
 *   `website-service`: The main web interface.
 
-## Running the services
+## Running the Project
 
-Each service is a Django project and can be run individually.
+To get the full application running, you need to run each microservice. Here is a guide to run the main `website-service` and the `courses-service` to see the course listing functionality.
 
-For example, to run the `website-service`:
+**Prerequisites:**
+*   Python 3.x installed
+*   `pip` for package installation
 
-```bash
-cd website-service/website
-python manage.py runserver
-```
+### Step 1: Run the Courses Service
+
+The `courses-service` provides the data for university courses.
+
+1.  Open a terminal and navigate to the `courses-service` directory:
+    ```bash
+    cd courses-service/coursesService
+    ```
+2.  Install the required Python packages:
+    ```bash
+    pip install -r ../requirements.txt
+    ```
+3.  Apply database migrations and load initial data:
+    ```bash
+    python manage.py migrate
+    python manage.py loaddata fixtures/initial_data.json
+    ```
+4.  Start the service (it will run on `http://127.0.0.1:8000/` by default):
+    ```bash
+    python manage.py runserver
+    ```
+    Keep this terminal running.
+
+### Step 2: Run the Website Service
+
+The `website-service` provides the main user interface.
+
+1.  Open a **new** terminal and navigate to the `website-service` directory:
+    ```bash
+    cd website-service/website
+    ```
+2.  Install the required Python packages:
+    ```bash
+    pip install -r ../requirements.txt
+    ```
+3.  Start the service on a different port (e.g., 8001):
+    ```bash
+    python manage.py runserver 8001
+    ```
+    Keep this terminal running.
+
+### Step 3: View the Website
+
+Now you can access the website in your browser:
+
+*   **Homepage:** [http://127.0.0.1:8001/](http://127.0.0.1:8001/)
+*   **Courses Page:** [http://127.0.0.1:8001/courses/](http://127.0.0.1:8001/courses/)
+
+### Running Other Services
+
+To enable all features (like discussions, events, etc.), you need to run the other microservices as well. The process is similar for each service: navigate to its directory, install requirements, and run the server on a unique port.
+
 
 ## URLs
 
