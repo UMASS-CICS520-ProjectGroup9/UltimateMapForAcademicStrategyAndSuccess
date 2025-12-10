@@ -32,7 +32,7 @@ Start each backend Django service in its own terminal window:
     git clone https://github.com/UMASS-CICS520-ProjectGroup9/courses-service.git
     cd courses-service/coursesService
     ```
-3.  Install dependencies:
+3.  Install dependencies (choose one):
     ```bash
     # If you are inside the app folder (e.g., coursesService, professorsService, etc.)
     pip install -r ../requirements.txt
@@ -43,6 +43,10 @@ Start each backend Django service in its own terminal window:
 4.  Apply migrations and load initial data (if needed):
     ```bash
     python manage.py migrate
+    ```
+5.  (Optional) Load initial data:
+    ```bash
+    # Only run if fixtures/initial_data.json exists
     python manage.py loaddata fixtures/initial_data.json
     ```
 5.  Run the service:
@@ -184,6 +188,7 @@ The services are expected to run on specific ports to communicate. Ensure your `
 *If you encounter "Address already in use" errors, change the port number in the specific service's `manage.py` or `app.py` file.*
 
 
+
 ## 🧪 Testing & Documentation
 
 To verify the system is working:
@@ -194,6 +199,7 @@ To verify the system is working:
 ### Run Tests and Generate HTML Reports
 For each service, from its root directory:
 ```bash
+pip install pytest pytest-django pytest-html sphinx
 pytest --html=docs/build/html/test_report.html --self-contained-html
 ```
 
@@ -204,3 +210,11 @@ cd docs
 make html
 ```
 Open `docs/build/html/index.html` in your browser to view the documentation and test report.
+
+## 🛠 Troubleshooting
+
+- If you see "ModuleNotFoundError", check your PYTHONPATH and that all dependencies are installed.
+- If you see "Address already in use", change the port in the runserver command.
+- If migrations fail, check your database setup and migration files.
+- If Sphinx docs do not build, ensure `conf.py` exists in `docs/source/`.
+- If tests are not discovered, check `pytest.ini` and test file naming.
