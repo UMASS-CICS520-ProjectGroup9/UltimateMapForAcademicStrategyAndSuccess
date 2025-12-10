@@ -12,16 +12,18 @@ Ultimate Map for Academic Strategy & Success (UMASS) is a comprehensive web plat
 *   Community discussion board
 *   Course builder with calendar
 
+
 ## Microservices
 
-This project is composed of multiple microservices:
+This project is composed of multiple microservices (with current deployment URLs):
 
-*   `account-service`: Manages user accounts.
-*   `courses-service`: Manages courses.
-*   `discussions-service`: Manages discussions.
-*   `events-service`: Manages events.
-*   `userauthen-service`: Handles user authentication.
-*   `website-service`: The main web interface.
+- `account-service`: Manages user accounts. *(URL: configurable/local only)*
+- `courses-service`: Manages courses. [https://sgtangsweb.pythonanywhere.com/api/courses/](https://sgtangsweb.pythonanywhere.com/api/courses/)
+- `professors-service`: Professor data. [https://georgesweb.pythonanywhere.com/api/professors/](https://georgesweb.pythonanywhere.com/api/professors/)
+- `discussions-service`: Discussions. [https://isoulweb.pythonanywhere.com/api/discussions/](https://isoulweb.pythonanywhere.com/api/discussions/)
+- `events-service`: Events. [https://ping4learn1.pythonanywhere.com](https://ping4learn1.pythonanywhere.com)
+- `userauthen-service`: User authentication. [https://ping4learn0.pythonanywhere.com](https://ping4learn0.pythonanywhere.com)
+- `website-service`: The main web interface. [https://cics520umass.pythonanywhere.com](https://cics520umass.pythonanywhere.com)
 
 ## Running the Project
 
@@ -54,6 +56,7 @@ The `courses-service` provides the data for university courses.
     ```
     Keep this terminal running.
 
+
 ### Step 2: Run the Website Service
 
 The `website-service` provides the main user interface.
@@ -61,13 +64,7 @@ The `website-service` provides the main user interface.
 1.  Open a **new** terminal and navigate to the `website-service` directory:
     ```bash
     cd website-service/website
-    ```
-2.  Install the required Python packages:
-    ```bash
     pip install -r ../requirements.txt
-    ```
-3.  Start the service on a different port (e.g., 8001):
-    ```bash
     python manage.py runserver 8001
     ```
     Keep this terminal running.
@@ -79,9 +76,24 @@ Now you can access the website in your browser:
 *   **Homepage:** [http://127.0.0.1:8001/](http://127.0.0.1:8001/)
 *   **Courses Page:** [http://127.0.0.1:8001/courses/](http://127.0.0.1:8001/courses/)
 
+
 ### Running Other Services
 
-To enable all features (like discussions, events, etc.), you need to run the other microservices as well. The process is similar for each service: navigate to its directory, install requirements, and run the server on a unique port.
+To enable all features (like discussions, events, etc.), you need to run the other microservices as well. The process is similar for each service: navigate to its directory, install requirements, and run the server on a unique port. For production, the services are deployed at the URLs listed above.
+
+## Documentation & Testing
+
+- Each service has its own README and test suite (pytest/Django)
+- The `website-service` includes Sphinx documentation:
+    - Source: `website-service/docs/source/`
+    - Build: `website-service/docs/build/html/`
+    - To build docs:
+        ```bash
+        cd website-service/docs
+        make html
+        ```
+    - Open `website-service/docs/build/html/index.html` in your browser
+- HTML test reports are generated and included in the Sphinx docs
 
 
 ## URLs
