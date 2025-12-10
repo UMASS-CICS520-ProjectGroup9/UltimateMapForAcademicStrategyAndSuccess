@@ -1,9 +1,11 @@
 
 
 
-# Build and Run Instructions
 
-This project is a microservices-based Django application. You must run the backend services and the frontend website simultaneously for the full application to work.
+# Build and Run Instructions (Full Setup)
+
+This document provides comprehensive, step-by-step instructions for running, testing, and troubleshooting all microservices in the UMASS project. For a minimal local demo, see the Quick Start section in [README.md](./README.md).
+
 
 
 ## 🛠 Prerequisites
@@ -16,13 +18,11 @@ Before you begin, ensure you have the following installed:
 ---
 
 
-## 🚀 Quick Start (Manual)
 
-To run the system, you will need to open **multiple terminal windows** (one for each service).
+## 🚀 Full Local/Production Setup
 
+To run the full system, you will need to open **multiple terminal windows** (one for each service). This guide covers all microservices, recommended ports, and advanced troubleshooting.
 
-### 1. Backend Services (Django)
-Start each backend Django service in its own terminal window:
 
 
 #### **Courses Service**
@@ -40,7 +40,7 @@ Start each backend Django service in its own terminal window:
     # If you are in the service root directory
     pip install -r requirements.txt
     ```
-4.  Apply migrations and load initial data (if needed):
+4.  Apply migrations:
     ```bash
     python manage.py migrate
     ```
@@ -49,7 +49,7 @@ Start each backend Django service in its own terminal window:
     # Only run if fixtures/initial_data.json exists
     python manage.py loaddata fixtures/initial_data.json
     ```
-5.  Run the service:
+6.  Run the service:
     ```bash
     python manage.py runserver 5001
     ```
@@ -145,6 +145,7 @@ Start each backend Django service in its own terminal window:
 ---
 
 
+
 ### 2. Website Service (Frontend)
 
 1.  Open a **new** terminal.
@@ -157,16 +158,20 @@ Start each backend Django service in its own terminal window:
     ```bash
     pip install -r ../requirements.txt
     ```
-4.  Apply migrations and load initial data (if needed):
+4.  Apply migrations:
     ```bash
     python manage.py migrate
+    ```
+5.  (Optional) Load initial data:
+    ```bash
+    # Only run if fixtures/initial_data.json exists
     python manage.py loaddata fixtures/initial_data.json
     ```
-5.  Run the website:
+6.  Run the website:
     ```bash
     python manage.py runserver 8000
     ```
-6.  Open `http://localhost:8000` in your browser.
+7.  Open `http://localhost:8000` in your browser.
 
 ---
 
@@ -186,6 +191,7 @@ The services are expected to run on specific ports to communicate. Ensure your `
 | **Events Service** | `5006` |
 
 *If you encounter "Address already in use" errors, change the port number in the specific service's `manage.py` or `app.py` file.*
+
 
 
 
@@ -210,6 +216,10 @@ cd docs
 make html
 ```
 Open `docs/build/html/index.html` in your browser to view the documentation and test report.
+
+---
+
+For a minimal local demo, see the Quick Start in [README.md](./README.md).
 
 ## 🛠 Troubleshooting
 

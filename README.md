@@ -25,79 +25,65 @@ This project is composed of multiple microservices (with current deployment URLs
 - `userauthen-service`: User authentication. [https://ping4learn0.pythonanywhere.com](https://ping4learn0.pythonanywhere.com)
 - `website-service`: The main web interface. [https://cics520umass.pythonanywhere.com](https://cics520umass.pythonanywhere.com)
 
-## Running the Project
 
-To get the full application running, you need to run each microservice. Here is a guide to run the main `website-service` and the `courses-service` to see the course listing functionality.
+
+## Quick Start (Local Demo)
+
+This section is for quickly trying out the main features on your local machine. For a full, production-ready setup (all microservices, ports, troubleshooting, and advanced options), see the detailed [Build and Run Instructions](./build.md).
 
 **Prerequisites:**
-*   Python 3.x installed
-*   `pip` for package installation
+- Python 3.x installed
+- `pip` for package installation
 
-### Step 1: Run the Courses Service
+### Minimal Local Demo
 
-The `courses-service` provides the data for university courses.
-
-1.  Open a terminal and navigate to the `courses-service` directory:
+1. **Run Courses Service**
     ```bash
     cd courses-service/coursesService
-    ```
-2.  Install the required Python packages:
-    ```bash
     pip install -r ../requirements.txt
-    ```
-3.  Apply database migrations and load initial data:
-    ```bash
     python manage.py migrate
+    # (Optional) Only if fixtures/initial_data.json exists:
     python manage.py loaddata fixtures/initial_data.json
+    python manage.py runserver 8000
     ```
-4.  Start the service (it will run on `http://127.0.0.1:8000/` by default):
-    ```bash
-    python manage.py runserver
-    ```
-    Keep this terminal running.
+    Leave this terminal open.
 
-
-### Step 2: Run the Website Service
-
-The `website-service` provides the main user interface.
-
-1.  Open a **new** terminal and navigate to the `website-service` directory:
+2. **Run Website Service** (in a new terminal)
     ```bash
     cd website-service/website
     pip install -r ../requirements.txt
+    python manage.py migrate
     python manage.py runserver 8001
     ```
-    Keep this terminal running.
+    Leave this terminal open.
 
-### Step 3: View the Website
+3. **View in Browser:**
+    - Homepage: [http://127.0.0.1:8001/](http://127.0.0.1:8001/)
+    - Courses Page: [http://127.0.0.1:8001/courses/](http://127.0.0.1:8001/courses/)
 
-Now you can access the website in your browser:
+---
 
-*   **Homepage:** [http://127.0.0.1:8001/](http://127.0.0.1:8001/)
-*   **Courses Page:** [http://127.0.0.1:8001/courses/](http://127.0.0.1:8001/courses/)
+## Full Setup & Advanced Usage (Recommended for Contributors)
+
+To enable all features (discussions, events, authentication, etc.), or for production/deployment, follow the comprehensive [Build and Run Instructions](./build.md). That guide covers:
+- Running all microservices (with recommended ports)
+- Installing dependencies for each service
+- Database migrations and initial data
+- Testing and documentation
+- Troubleshooting common issues
+
+---
 
 
-### Running Other Services
-
-To enable all features (like discussions, events, etc.), you need to run the other microservices as well. The process is similar for each service: navigate to its directory, install requirements, and run the server on a unique port. For production, the services are deployed at the URLs listed above.
 
 ## Documentation & Testing
 
-- Each service has its own README and test suite (pytest/Django)
-- The `website-service` includes Sphinx documentation:
-    - Source: `website-service/docs/source/`
-    - Build: `website-service/docs/build/html/`
-    - To build docs:
-        ```bash
-        cd website-service/docs
-        make html
-        ```
-    - Open `website-service/docs/build/html/index.html` in your browser
-- HTML test reports are generated and included in the Sphinx docs
+- Each service has its own README and test suite (pytest/Django).
+- Sphinx documentation and HTML test reports are available for most services. See each service's `docs/` folder for details.
+- For full testing and documentation instructions, see [Build and Run Instructions](./build.md).
 
 
-## URLs
+## Project Resources
 
-*   https://www.canva.com/design/DAG1I4Z0Czo/8nQoNM2eyZNPwHklDBVLHw/edit
-
-*   https://docs.google.com/document/d/1JwpzXqgHDF3L94ZqDkt1eLmVOWDtZ1287fCrDswk0aw/edit?tab=t.0
+- [Project Design (Canva)](https://www.canva.com/design/DAG1I4Z0Czo/8nQoNM2eyZNPwHklDBVLHw/edit)
+- [Project Document (Google Docs)](https://docs.google.com/document/d/1JwpzXqgHDF3L94ZqDkt1eLmVOWDtZ1287fCrDswk0aw/edit?tab=t.0)
