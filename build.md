@@ -171,7 +171,28 @@ To run the full system, you will need to open **multiple terminal windows** (one
     ```bash
     python manage.py runserver 8000
     ```
-7.  Open `http://localhost:8000` in your browser.
+
+---
+
+
+**Important for Local Development:**
+If you want to run all services locally (instead of using the deployed microservices), you must update the API URLs in `website-service/website/website/settings.py` for all microservices:
+
+```
+# Example: change from deployed to local URLs
+COURSES_API_BASE_URL = "http://127.0.0.1:5001/api/courses/"
+PROFESSORS_API_BASE_URL = "http://127.0.0.1:5003/api/professors/"
+DISCUSSIONS_API_BASE_URL = "http://127.0.0.1:5002/api/discussions/"
+COMMENTS_API_BASE_URL = "http://127.0.0.1:5002/api/comments/"
+COURSE_DISCUSSION_API_BASE_URL = "http://127.0.0.1:5002/api/course-discussions/"
+COURSE_COMMENTS_API_BASE_URL = "http://127.0.0.1:5002/api/course-comments/"
+EVENTS_API_BASE_URL = "http://127.0.0.1:5006"
+USERAUTH_API_BASE_URL = "http://127.0.0.1:5004"
+# ...and so on for any other *_API_BASE_URL settings
+```
+This ensures the website-service talks to your local microservices instead of the deployed ones.
+
+---
 
 ---
 
